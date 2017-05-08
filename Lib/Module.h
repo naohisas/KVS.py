@@ -1,0 +1,24 @@
+#pragma once
+#include "Object.h"
+#include "String.h"
+#include "Dict.h"
+
+
+namespace kvs
+{
+
+namespace python
+{
+
+class Module : public kvs::python::Object
+{
+public:
+    Module( const std::string& name );
+    Module( const kvs::python::String& name );
+
+    kvs::python::Dict dict() const;
+};
+
+} // end of namespace python
+
+} // end of namespace kvs

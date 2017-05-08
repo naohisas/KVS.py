@@ -1,20 +1,21 @@
-#include <Python.h>
+#include <KVS.py/Lib/Interpreter.h>
+#include <KVS.py/Lib/String.h>
+#include <KVS.py/Lib/Module.h>
+#include <KVS.py/Lib/Dict.h>
+#include <KVS.py/Lib/Callable.h>
 
 
 int main( int argc, char** argv )
 {
-    Py_Initialize();
+    kvs::python::Interpreter interpreter;
 
     const char* script_file_name = "hello"; // w/o '.py'
-    PyObject* module_name = PyString_FromString( script_file_name );
-    PyObject* module = PyImport_Import( module_name );
-    PyObject* dic = PyModule_GetDict( module );
+    kvs::python::Module module( script_file_name );
+    kvs::python::Dict dict = module.dict();
 
     const char* func_name = "main"; // function defined in 'hello.py'
-    PyObject* main_func = PyDict_GetItemString( dic, func_name );
-    PyObject_CallObject( main_func, NULL );
-
-    Py_Finalize();
+    kvs::python::Callable func( dict.find( func_name ) );
+    func.call();
 
     return 0;
 }
