@@ -15,6 +15,7 @@ class Module : public kvs::python::Object
 public:
     Module( const std::string& name );
     Module( const kvs::python::String& name );
+    Module( const std::string& code, const std::string& name );
 
     kvs::python::Dict dict() const;
 };
