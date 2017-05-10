@@ -13,6 +13,9 @@ namespace python
 class Table : public kvs::python::Object
 {
 public:
+    static bool Check( const kvs::python::Object& object );
+
+public:
     Table( const kvs::ValueTable<kvs::Int32>& array );
     Table( const kvs::ValueTable<kvs::Int64>& array );
     Table( const kvs::ValueTable<kvs::Real32>& array );

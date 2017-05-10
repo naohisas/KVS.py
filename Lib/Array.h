@@ -13,6 +13,9 @@ namespace python
 class Array : public kvs::python::Object
 {
 public:
+    static bool Check( const kvs::python::Object& object );
+
+public:
     Array( const kvs::ValueArray<kvs::Int32>& array );
     Array( const kvs::ValueArray<kvs::Int64>& array );
     Array( const kvs::ValueArray<kvs::Real32>& array );
@@ -23,7 +26,6 @@ public:
     operator kvs::ValueArray<kvs::Int64>() const;
     operator kvs::ValueArray<kvs::Real32>() const;
     operator kvs::ValueArray<kvs::Real64>() const;
-    bool check() const;
 };
 
 } // end of namespace python

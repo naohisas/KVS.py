@@ -11,11 +11,13 @@ namespace python
 class Dict : public kvs::python::Object
 {
 public:
+    static bool Check( const kvs::python::Object& object );
+
+public:
     Dict( const kvs::python::Object& object );
 
     kvs::python::Object find( kvs::python::Object& key ) const;
     kvs::python::Object find( const std::string& key ) const;
-    bool check() const;
     size_t size() const;
     void clear();
 };

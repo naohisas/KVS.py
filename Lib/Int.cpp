@@ -1,10 +1,16 @@
 #include "Int.h"
 
+
 namespace kvs
 {
 
 namespace python
 {
+
+bool Int::Check( const kvs::python::Object& object )
+{
+    return PyInt_Check( object.get() );
+}
 
 Int::Int( const kvs::Int32 value ):
     kvs::python::Object( PyInt_FromLong( value ) )
@@ -29,11 +35,6 @@ Int::operator kvs::Int32() const
 Int::operator kvs::Int64() const
 {
     return kvs::Int64( PyInt_AsLong( get() ) );
-}
-
-bool Int::check() const
-{
-    return PyInt_Check( get() );
 }
 
 } // end of namespace python

@@ -27,6 +27,11 @@ namespace kvs
 namespace python
 {
 
+bool Module::Check( const kvs::python::Object& object )
+{
+    return PyModule_Check( object.get() );
+}
+
 Module::Module( const std::string& name ):
     Object( PyImport_ImportModule( name.c_str() ) )
 {

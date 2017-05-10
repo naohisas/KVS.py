@@ -58,6 +58,11 @@ namespace kvs
 namespace python
 {
 
+bool Table::Check( const kvs::python::Object& object )
+{
+    return PyArray_Check( object.get() ) && PyArray_NDIM( object.get() ) == 2;
+}
+
 Table::Table( const kvs::ValueTable<kvs::Int32>& table ):
     kvs::python::Object( ::Convert<kvs::Int32>( table ) )
 {
@@ -125,11 +130,6 @@ Table::operator kvs::ValueTable<kvs::Real64>() const
     if ( ndim != 2 ) { throw ""; }
 
     return ::Convert<kvs::Real64>( (PyArrayObject*)( get() ) );
-}
-
-bool Table::check() const
-{
-    return PyArray_Check( get() );
 }
 
 } // end of namespace python

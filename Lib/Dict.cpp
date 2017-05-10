@@ -7,6 +7,11 @@ namespace kvs
 namespace python
 {
 
+bool Dict::Check( const kvs::python::Object& object )
+{
+    return PyDict_Check( object.get() );
+}
+
 Dict::Dict( const kvs::python::Object& object ):
     Object( object )
 {
@@ -20,11 +25,6 @@ kvs::python::Object Dict::find( kvs::python::Object& key ) const
 kvs::python::Object Dict::find( const std::string& key ) const
 {
     return kvs::python::Object( PyDict_GetItemString( get(), key.c_str() ), true );
-}
-
-bool Dict::check() const
-{
-    return PyDict_Check( get() );
 }
 
 size_t Dict::size() const

@@ -1,6 +1,5 @@
 #pragma once
 #include "Object.h"
-#include <string>
 
 
 namespace kvs
@@ -9,16 +8,15 @@ namespace kvs
 namespace python
 {
 
-class String : public kvs::python::Object
+class Bool : public kvs::python::Object
 {
 public:
     static bool Check( const kvs::python::Object& object );
 
 public:
-    String( const std::string& value );
-    String( const kvs::python::Object& value );
+    Bool( const bool value );
 
-    operator std::string() const;
+    operator bool() const;
 };
 
 } // end of namespace python

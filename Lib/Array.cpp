@@ -49,6 +49,11 @@ namespace kvs
 namespace python
 {
 
+bool Array::Check( const kvs::python::Object& object )
+{
+    return PyArray_Check( object.get() ) && PyArray_NDIM( object.get() ) == 1;
+}
+
 Array::Array( const kvs::ValueArray<kvs::Int32>& array ):
     kvs::python::Object( ::Convert<kvs::Int32>( array ) )
 {
@@ -116,11 +121,6 @@ Array::operator kvs::ValueArray<kvs::Real64>() const
     if ( ndim != 1 ) { throw ""; }
 
     return ::Convert<kvs::Real64>( (PyArrayObject*)( get() ) );
-}
-
-bool Array::check() const
-{
-    return PyArray_Check( get() );
 }
 
 } // end of namespace python

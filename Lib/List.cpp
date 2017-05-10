@@ -7,6 +7,11 @@ namespace kvs
 namespace python
 {
 
+bool List::Check( const kvs::python::Object& object )
+{
+    return PyList_Check( object.get() );
+}
+
 List::List( const size_t size ):
     kvs::python::Object( PyList_New( size ) )
 {
@@ -17,15 +22,20 @@ List::List( const kvs::python::Object& object ):
 {
 }
 
-void List::set( const size_t index, const kvs::python::Object& object )
+bool List::set( const size_t index, const kvs::python::Object& object )
 {
     object.increment();
-    PyList_SetItem( get(), Py_ssize_t( index ), object.get() );
+    return PyList_SetItem( get(), Py_ssize_t( index ), object.get() ) == 0;
 }
 
-void List::append( const kvs::python::Object& object )
+bool List::insert( const size_t index, const kvs::python::Object& object )
 {
-    PyList_Append( get(), object.get() );
+    return PyList_Insert( get(), Py_ssize_t( index ), object.get() ) == 0;
+}
+
+bool List::append( const kvs::python::Object& object )
+{
+    return PyList_Append( get(), object.get() ) == 0;
 }
 
 size_t List::size() const
