@@ -18,6 +18,11 @@ void Tuple::set( const size_t index, const kvs::python::Object& object )
     PyTuple_SetItem( get(), Py_ssize_t( index ), object.get() );
 }
 
+size_t Tuple::size() const
+{
+    return static_cast<size_t>( PyTuple_Size( get() ) );
+}
+
 kvs::python::Object Tuple::operator [] ( const size_t index ) const
 {
     const bool borrowed = true;

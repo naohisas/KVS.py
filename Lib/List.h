@@ -7,12 +7,14 @@ namespace kvs
 namespace python
 {
 
-class Tuple : public kvs::python::Object
+class List : public kvs::python::Object
 {
 public:
-    Tuple( const size_t size = 0 );
+    List( const size_t size = 0 );
+    List( const kvs::python::Object& object );
 
     void set( const size_t index, const kvs::python::Object& object );
+    void append( const kvs::python::Object& object );
     size_t size() const;
     kvs::python::Object operator [] ( const size_t index ) const;
 };
