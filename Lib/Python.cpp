@@ -21,6 +21,11 @@ std::string Version()
 void Initialize( const bool import )
 {
     Py_Initialize();
+
+    int argc = 1;
+    char* argv[] = { "Program", NULL };
+    PySys_SetArgv( argc, argv );
+
     if ( import ) { ::ImportArray(); }
 }
 
