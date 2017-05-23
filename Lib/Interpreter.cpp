@@ -1,16 +1,6 @@
 #include "Interpreter.h"
 #include "Python.h"
 
-#define PY_ARRAY_UNIQUE_SYMBOL KVS_PYTHON_NUMPY_ARRAYOBJECT_H
-#include <numpy/arrayobject.h>
-
-namespace
-{
-
-inline void ImportArray() { import_array(); }
-
-}
-
 
 namespace kvs
 {
@@ -33,18 +23,17 @@ Interpreter::~Interpreter()
 
 void Interpreter::initialize( const bool import )
 {
-    Py_Initialize();
-    if ( import ) { ::ImportArray(); }
+    kvs::python::Initialize( import );
 }
 
 void Interpreter::finalize()
 {
-    Py_Finalize();
+    kvs::python::Finalize();
 }
 
 bool Interpreter::isInitialized() const
 {
-    return Py_IsInitialized();
+    return kvs::python::IsInitialized();
 }
 
 } // end of namespace python

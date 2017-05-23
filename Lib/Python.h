@@ -1,6 +1,6 @@
 #pragma once
 #include <Python.h>
-#include <kvs/String>
+#include <string>
 
 
 namespace kvs
@@ -9,11 +9,10 @@ namespace kvs
 namespace python
 {
 
-inline std::string Version()
-{
-    const std::string version = kvs::String::ToString( PY_VERSION );
-    return version;
-}
+std::string Version();
+void Initialize( const bool import = true );
+void Finalize();
+bool IsInitialized();
 
 } // end of namespace python
 
