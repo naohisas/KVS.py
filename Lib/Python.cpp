@@ -23,7 +23,8 @@ void Initialize( const bool import )
     Py_Initialize();
 
     int argc = 1;
-    char* argv[] = { "Program", NULL };
+    char argv0[] = "Program";
+    char* argv[] = { argv0, NULL };
     PySys_SetArgv( argc, argv );
 
     if ( import ) { ::ImportArray(); }
